@@ -13,7 +13,7 @@ function App() {
             </div>
           </div>
           <div className="reservation-input-container">
-            <input />
+            <input type="text" placeholder="customer name"/>
             <button>Add</button>
           </div>
         </div>
@@ -23,7 +23,7 @@ function App() {
             <div className="customer-foods-container">
               <div className="customer-food"></div>
               <div className="customer-food-input-container">
-                <input />
+                <input type="text" placeholder="add command" />
                 <button>Add</button>
               </div>
             </div>
