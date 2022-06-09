@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface ReservationState {
+  customers: string[];
+}
+
+const initialState: ReservationState = {
   customers: [],
 };
 
@@ -8,11 +12,15 @@ export const reservationSlice = createSlice({
   name: "resevations",
   initialState,
   reducers: {
-    // add(state, action) {
-    //   state.customers.push(action.payload);
-    // },
+    addReseveration(state, action: PayloadAction<string>) {
+      state.customers.push(action.payload);
+    },
+    removeReseveration(state, action: PayloadAction<string>) {
+      console.log("action.payload = ", action.payload);
+      state.customers = state.customers.filter((customer) => customer !== action.payload);
+    },
   },
 });
 
-export const addAction = reservationSlice.actions;
+export const reservationActions = reservationSlice.actions;
 export default reservationSlice.reducer;
