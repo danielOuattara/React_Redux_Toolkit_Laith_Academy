@@ -2,19 +2,26 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import { RootState } from "./app/store";
+import CustomerOrders from "./components/CustomerOrders";
 import ReservationCard from "./components/ReservationCard";
 import { reservationActions } from "./features/reservation-slice";
 
 function App() {
   const dispatch = useDispatch();
   const { customers } = useSelector((state: RootState) => state.reservations);
+  const { orders } = useSelector((state: RootState) => state.ordersList);
 
-  const [customer, setCustomer] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [customerOrdering, setCustomerOrdering] = useState([]);
 
   const handleAddReservation = () => {
-    if (customer) {
+    if (customerName) {
+      const customer = {
+        id: Date.now().toString(),
+        name: customerName,
+      };
       dispatch(reservationActions.addReseveration(customer));
-      setCustomer("");
+      setCustomerName("");
     }
   };
 
@@ -25,37 +32,29 @@ function App() {
           <div>
             <h5 className="reservation-header">Reservations</h5>
             <div className="reservation-cards-container">
-              {customers.map((name) => (
-                <ReservationCard
-                  key={name}
-                  name={name}
-                />
+              {customers.map((customer) => (
+                <ReservationCard key={customer.id} {...customer} />
               ))}
             </div>
           </div>
+          {/*----------------------------------------*/}
           <div className="reservation-input-container">
             <input
               type="text"
               placeholder="customer name"
-              onChange={(event) => setCustomer(event.target.value)}
-              value={customer}
+              onChange={(event) => setCustomerName(event.target.value)}
+              value={customerName}
             />
             <button type="button" onClick={handleAddReservation}>
               Add
             </button>
           </div>
         </div>
+
         <div className="customer-food-container">
-          <div className="customer-food-card-container">
-            <p>Selena Gomez</p>
-            <div className="customer-foods-container">
-              <div className="customer-food"></div>
-              <div className="customer-food-input-container">
-                <input type="text" placeholder="add command" />
-                <button>Add</button>
-              </div>
-            </div>
-          </div>
+          {orders.map((order) => {
+            return <CustomerOrders key={order.id} {...order}/>;
+          })}
         </div>
       </div>
     </div>

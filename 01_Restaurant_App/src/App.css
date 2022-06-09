@@ -36,6 +36,9 @@
   box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.171);
   width: 80%;
   margin: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .reservation-input-container {
   width: 80%;
@@ -87,5 +90,40 @@
   display: flex;
   width: 100%;
   margin-top: 1rem;
-  justify-content: space-between;
+  justify-content: stretch;
+}
+
+.customer-orders-header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn {
+  color: rgb(117, 117, 117);
+  padding: 0 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.remove-btn {
+  border: 1px solid rgb(214, 0, 0);
+  background-color: white;
+}
+.remove-btn:hover {
+  background-color: red;
+  color: white;
+}
+
+.command-btn {
+  border: 1px solid rgb(2, 126, 43);
+  background-color: white;
+}
+.command-btn:hover {
+  background-color: rgb(0, 177, 65);
+  color: white;
 }
